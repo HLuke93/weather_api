@@ -12,9 +12,23 @@ api_data = api_link.json()
 
 # EXTRACT JSON DATA and Create Variables to store and display data
 
-temp_city = ((api_data["main"]["temp"]) - 273.15)
-weather_description = api_data["weather"][0]["description"]
-humidity = api_data["main"]["humidity"]
-wind_speed = api_data["wind"]["speed"]
-date_time = datetime().now.strftime("%d %b %Y | &I %M %S %p")
+if api_data["cod"] == "404":
+    print("Invalid city, please check city name")
+else:
+
+    temp_city = ((api_data["main"]["temp"]) - 273.15)
+    weather_description = api_data["weather"][0]["description"]
+    humidity = api_data["main"]["humidity"]
+    wind_speed = api_data["wind"]["speed"]
+    date_time = datetime.now().strftime("%d %b %Y | %I %M %S %p")
+
+    print("_________________________________________")
+    print("Weather stats for - {} ||  {}".format(location.upper(), date_time))
+    print("_________________________________________")
+
+    print("Current temperature is {:.2f} deg C".format(temp_city))
+    print("Current weather desc  :",weather_description)
+    print("Current humidity  :",humidity, "%")
+    print("Current wind speed  :",wind_speed, "kmph")
+
 
